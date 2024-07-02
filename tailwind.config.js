@@ -33,8 +33,23 @@ module.exports = {
                 "light-3": "#7878A3",
                 "light-4": "#5C5C7B",
                 light: {
+                    border: "",
+                    input: "",
+                    ring: "",
                     background: "#FFFFFF",
                     foreground: "#030712",
+                    primary: {
+                        DEFAULT: "#5D5FEF",
+                        foreground: "#FFFFFF",
+                    },
+                    secondary: {
+                        DEFAULT: "#877EFF",
+                        foreground: "#FFFFFF",
+                    },
+                    destructive: {
+                        DEFAULT: "#FF5A5A",
+                        foreground: "#FFFFFF",
+                    },
                 },
                 dark: {
                     border: "",
@@ -43,12 +58,12 @@ module.exports = {
                     background: "#121316",
                     foreground: "#EDEEF0",
                     primary: {
-                        DEFAULT: "",
-                        foreground: "",
+                        DEFAULT: "#5D5FEF",
+                        foreground: "#FFFFFF",
                     },
                     secondary: {
-                        DEFAULT: "",
-                        foreground: "",
+                        DEFAULT: "#877EFF",
+                        foreground: "#FFFFFF",
                     },
                     destructive: {
                         DEFAULT: "#FF5A5A",

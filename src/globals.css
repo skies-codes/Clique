@@ -156,7 +156,7 @@
 
     /* Bottom bar */
     .bottom-bar {
-        @apply z-50 flex-between w-full sticky bottom-0 rounded-t-[20px] bg-dark-2 px-5 py-4 md:hidden;
+        @apply z-50 flex-between w-full sticky bottom-0 rounded-t-[20px] px-5 py-4 md:hidden bg-light-background dark:bg-dark-background;
     }
 
     /* File uploader */
@@ -187,11 +187,11 @@
 
     /* Left sidebar */
     .leftsidebar {
-        @apply hidden md:flex px-6 py-10 flex-col justify-between min-w-[270px] bg-dark-2;
+        @apply hidden md:flex h-screen px-6 py-4 flex-col justify-between min-w-[270px] bg-light-background dark:bg-dark-background;
     }
 
     .leftsidebar-link {
-        @apply rounded-lg base-medium hover:bg-primary-500 transition;
+        @apply rounded-lg hover:bg-primary-500 transition;
     }
 
     /* Post Card */
@@ -205,7 +205,7 @@
 
     /* Topbar */
     .topbar {
-        @apply sticky top-0 z-50 md:hidden bg-dark-2 w-full;
+        @apply sticky top-0 z-50 md:hidden bg-light-background dark:bg-dark-background w-full;
     }
 
     /* User card */

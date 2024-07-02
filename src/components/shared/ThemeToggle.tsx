@@ -1,7 +1,15 @@
 import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
+import { cn } from "../../lib/utils";
+import { RiMoonClearLine } from "react-icons/ri";
+import { MdOutlineWbSunny } from "react-icons/md";
 
-const ThemeToggle = () => {
+interface ThemeToggleProps {
+    className?: string;
+    text?: string;
+}
+
+const ThemeToggle = ({ className, text }: ThemeToggleProps) => {
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") || "light"
     );
@@ -22,18 +30,21 @@ const ThemeToggle = () => {
     return (
         <Button
             onClick={toggleTheme}
-            variant={"outline"}
-            className='text-light-foreground dark:text-dark-foreground rounded-full border-none'
+            variant={"ghost"}
+            className={cn("group", className)}
         >
-            <img
-                src={
-                    theme === "light"
-                        ? "/assets/icons/sun.svg"
-                        : "/assets/icons/moon.svg"
-                }
-                alt='dark-light-mode'
-                className='w-6 h-6'
-            />
+            {theme === "light" ? (
+                <MdOutlineWbSunny
+                    size={20}
+                    className='text-primary-500 group-hover:text-white'
+                />
+            ) : (
+                <RiMoonClearLine
+                    size={20}
+                    className='text-primary-500 group-hover:text-white'
+                />
+            )}
+            {text}
         </Button>
     );
 };
