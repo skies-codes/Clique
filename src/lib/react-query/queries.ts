@@ -26,6 +26,8 @@ import {
     savePost,
     deleteSavedPost,
     signInAccount,
+    createPost,
+    updatePost,
 } from "../appwrite/api";
 import {
     INewPost,
@@ -94,17 +96,17 @@ export const useGetRecentPosts = () => {
     });
 };
 
-// export const useCreatePost = () => {
-//     const queryClient = useQueryClient();
-//     return useMutation({
-//         mutationFn: (post: INewPost) => createPost(post),
-//         onSuccess: () => {
-//             queryClient.invalidateQueries({
-//                 queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
-//             });
-//         },
-//     });
-// };
+export const useCreatePost = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (post: INewPost) => createPost(post),
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
+            });
+        },
+    });
+};
 
 export const useGetPostById = (postId?: string) => {
     return useQuery({
@@ -122,17 +124,17 @@ export const useGetUserPosts = (userId?: string) => {
     });
 };
 
-// export const useUpdatePost = () => {
-//     const queryClient = useQueryClient();
-//     return useMutation({
-//         mutationFn: (post: IUpdatePost) => updatePost(post),
-//         onSuccess: (data) => {
-//             queryClient.invalidateQueries({
-//                 queryKey: [QUERY_KEYS.GET_POST_BY_ID, data?.$id],
-//             });
-//         },
-//     });
-// };
+export const useUpdatePost = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (post: IUpdatePost) => updatePost(post),
+        onSuccess: (data) => {
+            queryClient.invalidateQueries({
+                queryKey: [QUERY_KEYS.GET_POST_BY_ID, data?.$id],
+            });
+        },
+    });
+};
 
 export const useDeletePost = () => {
     const queryClient = useQueryClient();

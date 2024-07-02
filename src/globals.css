@@ -165,7 +165,7 @@
     }
 
     .file_uploader-label {
-        @apply text-light-4 text-center small-regular w-full p-4 border-t border-t-dark-4;
+        @apply text-light-4 text-center text-sm w-full p-4 border-t border-t-dark-4;
     }
 
     .file_uploader-box {
@@ -222,20 +222,20 @@
     }
 
     .shad-input {
-        @apply h-12 border-b-[2px] border-white border-t-0 border-x-0 placeholder:text-light-4 focus-visible:ring-0 !important;
+        @apply h-12 border-none bg-dark-4 ring-offset-light-3 placeholder:text-slate-600 focus-visible:ring-1 focus-visible:ring-offset-1 !important;
     }
 
     .shad-textarea {
-        @apply h-36 bg-dark-3 rounded-xl border-none focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-light-3 !important;
+        @apply h-36 bg-dark-4 rounded-xl border-none focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-light-3 !important;
     }
 
     /* Button */
     .shad-button_primary {
-        @apply bg-primary-500 hover:bg-primary-500 text-light-1 flex gap-2 !important;
+        @apply h-12 bg-primary-500 hover:bg-primary-500 text-light-1 flex gap-2 !important;
     }
 
     .shad-button_dark_4 {
-        @apply h-12 bg-dark-4 px-5 text-light-1 flex gap-2 !important;
+        @apply h-12 bg-dark-4 px-5 dark:text-dark-foreground flex gap-2 !important;
     }
 
     .shad-button_ghost {
