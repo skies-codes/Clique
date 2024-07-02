@@ -18,7 +18,7 @@ export default function AuthLayout() {
         <>
             <section className='flex flex-1 justify-center items-center flex-col relative h-screen'>
                 <div className='absolute top-4 left-4'>
-                    <ThemeToggle />
+                    <ThemeToggle className='hover:bg-primary-500' />
                 </div>
                 <Outlet />
             </section>
