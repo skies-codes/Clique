@@ -1,3 +1,9 @@
+import { MdHome, MdPeopleAlt } from "react-icons/md";
+import { CiSearch } from "react-icons/ci";
+import { FaBookBookmark } from "react-icons/fa6";
+import { IoCreateSharp, IoSearch } from "react-icons/io5";
+import { INavLink } from "../types";
+
 export const INITIAL_USER = {
     id: "",
     name: "",
@@ -42,27 +48,27 @@ export const bottombarLinks = [
 
 export const sidebarLinks = [
     {
-        imgURL: "/assets/icons/home.svg",
+        icon: MdHome,
         route: "/",
         label: "Home",
     },
     {
-        imgURL: "/assets/icons/wallpaper.svg",
+        icon: IoSearch,
         route: "/explore",
         label: "Explore",
     },
     {
-        imgURL: "/assets/icons/people.svg",
+        icon: MdPeopleAlt,
         route: "/all-users",
         label: "People",
     },
     {
-        imgURL: "/assets/icons/bookmark.svg",
+        icon: FaBookBookmark,
         route: "/saved",
         label: "Saved",
     },
     {
-        imgURL: "/assets/icons/gallery-add.svg",
+        icon: IoCreateSharp,
         route: "/create-post",
         label: "Create Post",
     },

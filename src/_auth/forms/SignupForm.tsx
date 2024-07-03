@@ -21,8 +21,11 @@ import {
     useSignInAccount,
 } from "../../lib/react-query/queries";
 import { useUserContext } from "../../context";
+import { useState } from "react";
+import { PiEyeFill, PiEyeSlashFill } from "react-icons/pi";
 
 const SignupForm = () => {
+    const [showPassword, setShowPassword] = useState<boolean>(false);
     const { toast } = useToast();
     const navigate = useNavigate();
     const {
@@ -93,12 +96,14 @@ const SignupForm = () => {
     return (
         <Form {...form}>
             <section className='w-full sm:w-420 px-5 flex flex-col items-start justify-center dark:bg-dark-background'>
-                <h1 className='h1 text-primary-500'>Clique</h1>
+                <h1 className='text-5xl text-foreground font-semibold dark:text-dark-foreground'>
+                    Clique
+                </h1>
 
-                <h4 className='h4 whitespace-nowrap'>
+                <h4 className='text-2xl mt-10 text-foreground dark:text-dark-foreground'>
                     Join Our Exclusive Community!
                 </h4>
-                <p className='text-sm text-gray-400'>
+                <p className='text-sm text-zinc-500 mt-1'>
                     To use clique, Please enter your details
                 </p>
 
@@ -165,14 +170,32 @@ const SignupForm = () => {
                         name='password'
                         render={({ field }) => (
                             <FormItem>
-                                <FormControl>
-                                    <Input
-                                        type='password'
-                                        className='shad-input'
-                                        {...field}
-                                        placeholder='Password'
-                                    />
-                                </FormControl>
+                                <div className='relative'>
+                                    <FormControl>
+                                        <Input
+                                            type={
+                                                showPassword
+                                                    ? "text"
+                                                    : "password"
+                                            }
+                                            className='shad-input'
+                                            {...field}
+                                            placeholder='Password'
+                                        />
+                                    </FormControl>
+                                    <div
+                                        className='absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer'
+                                        onClick={() =>
+                                            setShowPassword((prev) => !prev)
+                                        }
+                                    >
+                                        {showPassword ? (
+                                            <PiEyeFill className='text-foreground dark:text-dark-foreground' />
+                                        ) : (
+                                            <PiEyeSlashFill className='text-foreground dark:text-dark-foreground' />
+                                        )}
+                                    </div>
+                                </div>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -181,8 +204,9 @@ const SignupForm = () => {
                     <Button
                         type='submit'
                         className={cn(
-                            "btn w-full bg-gradient-to-r from-purple-500 to-purple-900 disabled:cursor-not-allowed disabled:opacity-80"
+                            "w-full text-white bg-primary disabled:cursor-not-allowed disabled:opacity-60"
                         )}
+                        disabled={isUserLoading}
                     >
                         {isUserLoading ? (
                             <div className='flex-center gap-2'>
@@ -193,11 +217,11 @@ const SignupForm = () => {
                         )}
                     </Button>
 
-                    <p className='text-sm text-light-2 text-center mt-2'>
+                    <p className='text-sm text-center mt-2 text-foreground dark:text-dark-foreground'>
                         Already have an account?
                         <Link
                             to='/sign-in'
-                            className='text-primary-500 font-semibold ml-1'
+                            className='text-primary font-semibold ml-1'
                         >
                             Log in
                         </Link>

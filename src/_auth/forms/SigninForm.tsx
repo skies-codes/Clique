@@ -19,8 +19,12 @@ import { useToast } from "../../components/ui/use-toast";
 import { SigninValidation } from "../../lib/validation/index";
 import { useSignInAccount } from "../../lib/react-query/queries";
 import { useUserContext } from "../../context";
+import { PiEyeFill, PiEyeSlashFill } from "react-icons/pi";
+import { useState } from "react";
+import { cn } from "../../lib/utils";
 
 const SigninForm = () => {
+    const [showPassword, setShowPassword] = useState<boolean>(false);
     const { toast } = useToast();
     const navigate = useNavigate();
     const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
@@ -61,10 +65,14 @@ const SigninForm = () => {
     return (
         <Form {...form}>
             <section className='sm:w-420 w-full px-5 flex-col items-start justify-center relative dark:bg-dark-background'>
-                <h1 className='h1 text-primary-500'>Clique</h1>
+                <h1 className='text-5xl text-foreground font-semibold dark:text-dark-foreground'>
+                    Clique
+                </h1>
 
-                <h3 className='h3 mt-5'>Log in to your account</h3>
-                <p className='text-base'>
+                <h3 className='text-2xl mt-10 text-foreground dark:text-dark-foreground'>
+                    Log in to your account
+                </h3>
+                <p className='text-sm text-zinc-500 mt-1'>
                     Welcome back! Please enter your details.
                 </p>
                 <form
@@ -94,20 +102,44 @@ const SigninForm = () => {
                         name='password'
                         render={({ field }) => (
                             <FormItem>
-                                <FormControl>
-                                    <Input
-                                        type='password'
-                                        className='shad-input'
-                                        {...field}
-                                        placeholder='Password'
-                                    />
-                                </FormControl>
+                                <div className='relative'>
+                                    <FormControl>
+                                        <Input
+                                            type={
+                                                showPassword
+                                                    ? "text"
+                                                    : "password"
+                                            }
+                                            className='shad-input'
+                                            {...field}
+                                            placeholder='Password'
+                                        />
+                                    </FormControl>
+                                    <div
+                                        className=' absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer'
+                                        onClick={() =>
+                                            setShowPassword((prev) => !prev)
+                                        }
+                                    >
+                                        {showPassword ? (
+                                            <PiEyeFill className='text-foreground dark:text-dark-foreground' />
+                                        ) : (
+                                            <PiEyeSlashFill className='text-foreground dark:text-dark-foreground' />
+                                        )}
+                                    </div>
+                                </div>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
 
-                    <Button type='submit' className='shad-button_primary'>
+                    <Button
+                        type='submit'
+                        className={cn(
+                            "w-full text-white bg-primary disabled:cursor-not-allowed disabled:opacity-60"
+                        )}
+                        disabled={isUserLoading || isPending}
+                    >
                         {isPending || isUserLoading ? (
                             <div className='flex-center gap-2'>
                                 <Loader /> Loading...
@@ -117,11 +149,11 @@ const SigninForm = () => {
                         )}
                     </Button>
 
-                    <p className='text-small-regular text-light-2 text-center mt-2'>
+                    <p className='text-sm text-foreground dark:text-dark-foreground text-center mt-2'>
                         Don&apos;t have an account?
                         <Link
                             to='/sign-up'
-                            className='text-primary-500 text-small-semibold ml-1'
+                            className='text-primary text-sm font-semibold ml-1'
                         >
                             Sign up
                         </Link>
