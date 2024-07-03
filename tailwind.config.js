@@ -19,71 +19,38 @@ module.exports = {
         },
         extend: {
             colors: {
-                "primary-500": "#877EFF",
-                "primary-600": "#5D5FEF",
-                "secondary-500": "#FFB620",
-                "off-white": "#D0DFFF",
-                red: "#FF5A5A",
-                "dark-1": "#000000",
-                "dark-2": "#09090A",
-                "dark-3": "#121316",
-                "dark-4": "#1F1F22",
-                "light-1": "#FFFFFF",
-                "light-2": "#EFEFEF",
-                "light-3": "#7878A3",
-                "light-4": "#5C5C7B",
-                light: {
-                    border: "",
-                    input: "",
-                    ring: "",
-                    background: "#FFFFFF",
-                    foreground: "#030712",
-                    primary: {
-                        DEFAULT: "#5D5FEF",
-                        foreground: "#FFFFFF",
-                    },
-                    secondary: {
-                        DEFAULT: "#877EFF",
-                        foreground: "#FFFFFF",
-                    },
-                    destructive: {
-                        DEFAULT: "#FF5A5A",
-                        foreground: "#FFFFFF",
-                    },
+                background: "#f8fafc",
+                foreground: "#020617",
+                primary: {
+                    DEFAULT: "#2970ff",
+                    foreground: "#FFFFFF",
                 },
+                secondary: {
+                    DEFAULT: "#f1f1f1",
+                    foreground: "#020617",
+                },
+                destructive: {
+                    DEFAULT: "#FF5A5A",
+                    foreground: "#FFFFFF",
+                },
+                "gray-1": "#b0b0b0",
+                "gray-2": "#59595b",
+                "dark-2": "#09090b",
+                "dark-3": "#18181b",
                 dark: {
-                    border: "",
-                    input: "",
-                    ring: "",
-                    background: "#121316",
+                    background: "#050505",
                     foreground: "#EDEEF0",
                     primary: {
-                        DEFAULT: "#5D5FEF",
+                        DEFAULT: "#2970ff",
                         foreground: "#FFFFFF",
                     },
                     secondary: {
-                        DEFAULT: "#877EFF",
-                        foreground: "#FFFFFF",
+                        DEFAULT: "#404040",
+                        foreground: "#EDEEF0",
                     },
                     destructive: {
                         DEFAULT: "#FF5A5A",
                         foreground: "#FFFFFF",
-                    },
-                    muted: {
-                        DEFAULT: "",
-                        foreground: "",
-                    },
-                    accent: {
-                        DEFAULT: "",
-                        foreground: "",
-                    },
-                    popover: {
-                        DEFAULT: "",
-                        foreground: "",
-                    },
-                    card: {
-                        DEFAULT: "",
-                        foreground: "",
                     },
                 },
             },
@@ -97,6 +64,18 @@ module.exports = {
             fontFamily: {
                 inter: ["Inter", "sans-serif"],
                 bricolage: ['"Bricolage Grotesque"', "sans-serif"],
+                sys: [
+                    "system-ui",
+                    "-apple-system",
+                    "BlinkMacSystemFont",
+                    '"Segoe UI"',
+                    "Roboto, Oxygen",
+                    "Ubuntu",
+                    "Cantarell",
+                    '"Open Sans"',
+                    '"Helvetica Neue"',
+                    "sans-serif",
+                ],
             },
             keyframes: {
                 "accordion-down": {

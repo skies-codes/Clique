@@ -15,8 +15,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const checkAuthUser = async () => {
         try {
-            const currentAccount = await getCurrentUser();
-            if (currentAccount) {
+            const currentUser = localStorage.getItem("currentUser");
+            if (currentUser) {
+                const currentAccount = JSON.parse(currentUser);
                 setUser({
                     id: currentAccount.$id,
                     name: currentAccount.name,
@@ -29,7 +30,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
                 return true;
             }
-
             return false;
         } catch (error) {
             console.error(error);

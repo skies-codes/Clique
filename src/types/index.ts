@@ -1,5 +1,8 @@
+import { ReactElement } from "react";
+import { IconType } from "react-icons/lib";
+
 export interface INavLink {
-    imgURL: string;
+    icon: IconType;
     route: string;
     label: string;
 }

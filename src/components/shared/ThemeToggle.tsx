@@ -31,17 +31,17 @@ const ThemeToggle = ({ className, text }: ThemeToggleProps) => {
         <Button
             onClick={toggleTheme}
             variant={"ghost"}
-            className={cn("group", className)}
+            className={cn("", className)}
         >
             {theme === "light" ? (
                 <MdOutlineWbSunny
                     size={20}
-                    className='text-primary-500 group-hover:text-white'
+                    className='text-foreground dark:text-dark-foreground group-hover:text-white'
                 />
             ) : (
                 <RiMoonClearLine
                     size={20}
-                    className='text-primary-500 group-hover:text-white'
+                    className='text-foreground dark:text-dark-foreground group-hover:text-white'
                 />
             )}
             {text}
