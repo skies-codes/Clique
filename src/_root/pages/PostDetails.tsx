@@ -6,9 +6,10 @@ import {
     useGetUserPosts,
 } from "../../lib/react-query/queries";
 import { Button } from "../../components/ui/button";
-import { Loader, PostStats } from "../../components/shared";
+import { PostStats } from "../../components/shared";
 import { multiFormatDateString } from "../../lib/utils";
 import GridPostList from "../../components/shared/GridPostList";
+import Loading from "../../components/loaders/Loading";
 
 const PostDetails = () => {
     const navigate = useNavigate();
@@ -49,7 +50,7 @@ const PostDetails = () => {
             </div>
 
             {isLoading || !post ? (
-                <Loader />
+                <Loading />
             ) : (
                 <div className='post_details-card'>
                     <img
@@ -156,7 +157,7 @@ const PostDetails = () => {
                     More Related Posts
                 </h3>
                 {isUserPostLoading || !relatedPosts ? (
-                    <Loader />
+                    <Loading />
                 ) : (
                     <GridPostList posts={relatedPosts} />
                 )}

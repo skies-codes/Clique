@@ -19,7 +19,7 @@ import { Textarea } from "../ui/textarea";
 import FileUploader from "../shared/FileUploader";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import Loader from "../shared/Loader";
+import Loading from "../loaders/Loading";
 
 type PostFormProps = {
     post?: Models.Document;
@@ -90,7 +90,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
                     name='caption'
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className='shad-form_label'>
+                            <FormLabel className='text-foreground dark:text-dark-foreground text-lg'>
                                 Caption
                             </FormLabel>
                             <FormControl>
@@ -109,7 +109,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
                     name='file'
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className='shad-form_label'>
+                            <FormLabel className='text-foreground dark:text-dark-foreground text-lg'>
                                 Add Photos
                             </FormLabel>
                             <FormControl>
@@ -128,7 +128,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
                     name='location'
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className='shad-form_label'>
+                            <FormLabel className='text-lg text-foreground dark:text-dark-foreground'>
                                 Add Location
                             </FormLabel>
                             <FormControl>
@@ -148,7 +148,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
                     name='tags'
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className='shad-form_label'>
+                            <FormLabel className='text-lg text-foreground dark:text-dark-foreground'>
                                 Add Tags (separated by comma " , ")
                             </FormLabel>
                             <FormControl>
@@ -167,18 +167,21 @@ const PostForm = ({ post, action }: PostFormProps) => {
                 <div className='flex gap-4 items-center justify-end'>
                     <Button
                         type='button'
-                        className='shad-button_dark_4'
+                        className='bg-primary text-white p-5'
                         onClick={() => navigate(-1)}
                     >
                         Cancel
                     </Button>
                     <Button
                         type='submit'
-                        className='shad-button_primary whitespace-nowrap'
+                        className='bg-primary p-5 text-white whitespace-nowrap'
                         disabled={isLoadingCreate || isLoadingUpdate}
                     >
-                        {(isLoadingCreate || isLoadingUpdate) && <Loader />}
-                        {action} Post
+                        {isLoadingCreate || isLoadingUpdate ? (
+                            <Loading text='Posting...' className='post' />
+                        ) : (
+                            `${action} Post`
+                        )}
                     </Button>
                 </div>
             </form>

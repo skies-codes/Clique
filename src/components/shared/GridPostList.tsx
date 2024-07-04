@@ -39,7 +39,7 @@ const GridPostList = ({
                                     alt='creator'
                                     className='w-8 h-8 rounded-full'
                                 />
-                                <p className='line-clamp-1'>
+                                <p className='line-clamp-1 text-white font-semibold'>
                                     {post.creator.name}
                                 </p>
                             </div>

@@ -2,14 +2,26 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context";
 import { useSignOutAccount } from "../../lib/react-query/queries";
 import { INITIAL_USER, sidebarLinks } from "../../constants/constants";
-import Loader from "./Loader";
 import { INavLink } from "../../types";
 import { Button } from "../ui/button";
 import ThemeToggle from "./ThemeToggle";
 import { BiLogOut } from "react-icons/bi";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
+import { RxCross2 } from "react-icons/rx";
+import Loading from "../loaders/Loading";
+import { cn } from "../../lib/utils";
 
-const LeftSidebar = () => {
+interface LeftSidebarProps {
+    isMobile?: boolean;
+    setIsMobile?: React.Dispatch<React.SetStateAction<boolean>>;
+    className?: string;
+}
+
+const LeftSidebar: React.FC<LeftSidebarProps> = ({
+    isMobile,
+    setIsMobile,
+    className,
+}) => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const { user, setUser, setIsAuthenticated, isLoading } = useUserContext();
@@ -28,9 +40,32 @@ const LeftSidebar = () => {
     }, [navigate, setIsAuthenticated, setUser, signOut]);
 
     return (
-        <aside className='hidden lg:flex w-[270px] flex-col justify-between border-r dark:border-none dark:bg-dark-2'>
+        <nav
+            className={cn(
+                "w-[270px] h-full flex flex-col justify-between border-r border-zinc-300 dark:border-zinc-900 bg-background dark:bg-dark-2",
+                className
+            )}
+        >
             <div className='flex flex-col'>
-                <div className='flex items-center justify-between p-4 border-b dark:border-none'>
+                <div className='px-5 py-4 lg:hidden'>
+                    {isMobile && (
+                        <Button
+                            size={"sm"}
+                            variant={"ghost"}
+                            className='hover:bg-blue-100 dark:hover:bg-zinc-800 cursor-pointer p-2'
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setIsMobile && setIsMobile(false);
+                            }}
+                        >
+                            <RxCross2
+                                size={20}
+                                className='text-foreground dark:text-dark-foreground'
+                            />
+                        </Button>
+                    )}
+                </div>
+                <div className='flex items-center justify-between pb-4 px-5 lg:pt-4 border-b border-zinc-300 dark:border-zinc-900'>
                     <Link
                         to='/'
                         className='flex gap-3 items-center justify-between'
@@ -70,6 +105,10 @@ const LeftSidebar = () => {
                                 className={`group text-foreground dark:text-dark-foreground rounded-md hover:bg-blue-500 hover:text-white ${
                                     isActive && "bg-primary text-white"
                                 }`}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setIsMobile && setIsMobile(false);
+                                }}
                             >
                                 <NavLink
                                     to={link.route}
@@ -83,10 +122,18 @@ const LeftSidebar = () => {
                             </li>
                         );
                     })}
-                    <ThemeToggle
-                        className='flex items-center justify-start py-2 px-3 gap-2 text-base text-foreground dark:text-dark-foreground hover:bg-blue-500 hover:text-white group'
-                        text='Theme'
-                    />
+                    <div
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setIsMobile && setIsMobile(false);
+                        }}
+                        className='w-full'
+                    >
+                        <ThemeToggle
+                            className='w-full flex items-center justify-start py-2 px-3 gap-2 text-base text-foreground dark:text-dark-foreground hover:bg-blue-500 hover:text-white group'
+                            text='Theme'
+                        />
+                    </div>
                 </ul>
             </div>
             <Button
@@ -97,7 +144,7 @@ const LeftSidebar = () => {
             >
                 {isSignOutUser ? (
                     <div className='flex-center gap-2'>
-                        <Loader /> LogingOut...
+                        <Loading text='LogingOut...' />
                     </div>
                 ) : (
                     <div className='flex gap-2 items-center'>
@@ -106,7 +153,7 @@ const LeftSidebar = () => {
                     </div>
                 )}
             </Button>
-        </aside>
+        </nav>
     );
 };
 
