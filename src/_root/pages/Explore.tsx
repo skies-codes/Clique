@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Input } from "../../components/ui";
-import { Loader } from "../../components/shared";
 import GridPostList from "../../components/shared/GridPostList";
 import { useGetPosts, useSearchPosts } from "../../lib/react-query/queries";
 import useDebounce from "../../hooks/useDebounce";
+import { IoFilter, IoSearch } from "react-icons/io5";
+import { CiSearch } from "react-icons/ci";
+import Loading from "../../components/loaders/Loading";
 
 export type SearchResultProps = {
     isSearchFetching: boolean;
@@ -16,7 +18,7 @@ const SearchResults = ({
     searchedPosts,
 }: SearchResultProps) => {
     if (isSearchFetching) {
-        return <Loader />;
+        return <Loading />;
     } else if (searchedPosts && searchedPosts.documents.length > 0) {
         return <GridPostList posts={searchedPosts.documents} />;
     } else {
@@ -46,7 +48,7 @@ const Explore = () => {
     if (!posts)
         return (
             <div className='flex-center w-full h-full'>
-                <Loader />
+                <Loading />
             </div>
         );
 
@@ -56,20 +58,17 @@ const Explore = () => {
         posts.pages.every((item: any) => item.documents.length === 0);
 
     return (
-        <div className='explore-container'>
-            <div className='explore-inner_container'>
-                <h2 className='h3-bold md:h2-bold w-full'>Search Posts</h2>
-                <div className='flex gap-1 px-4 w-full rounded-lg bg-dark-4'>
-                    <img
-                        src='/assets/icons/search.svg'
-                        width={24}
-                        height={24}
-                        alt='search'
-                    />
+        <div className='max-w-screen-lg w-full mx-auto flex flex-col overflow-scroll px-5 mt-12 py-4 custom-scrollbar'>
+            <div className='w-full flex flex-col gap-6 md:gap-9 py-4'>
+                <h2 className='text-4xl text-left w-full text-foreground dark:text-dark-foreground'>
+                    Search Posts
+                </h2>
+                <div className='flex gap-1 px-4 w-full rounded-lg bg-dark-3 items-center'>
+                    <CiSearch size={30} className='text-zinc-400' />
                     <Input
                         type='text'
                         placeholder='Search'
-                        className='explore-search'
+                        className='h-12 border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-0 text-dark-foreground'
                         value={searchValue}
                         onChange={(e) => {
                             const { value } = e.target;
@@ -80,18 +79,13 @@ const Explore = () => {
             </div>
 
             <div className='flex-between w-full max-w-5xl mt-16 mb-7'>
-                <h3 className='body-bold md:h3-bold'>Popular Today</h3>
+                <h3 className='text-lg font-semibold text-foreground dark:text-dark-foreground'>
+                    Popular Today
+                </h3>
 
                 <div className='flex-center gap-3 bg-dark-3 rounded-xl px-4 py-2 cursor-pointer'>
-                    <p className='small-medium md:base-medium text-light-2'>
-                        All
-                    </p>
-                    <img
-                        src='/assets/icons/filter.svg'
-                        width={20}
-                        height={20}
-                        alt='filter'
-                    />
+                    <p className='text-sm text-white'>All</p>
+                    <IoFilter size={20} className='text-purple-500' />
                 </div>
             </div>
 
@@ -102,7 +96,7 @@ const Explore = () => {
                         searchedPosts={searchedPosts}
                     />
                 ) : shouldShowPosts ? (
-                    <p className='text-light-4 mt-10 text-center w-full'>
+                    <p className='text-foreground dark:text-dark-foreground mt-10 text-center w-full'>
                         End of posts
                     </p>
                 ) : (
@@ -117,7 +111,7 @@ const Explore = () => {
 
             {hasNextPage && !searchValue && (
                 <div ref={ref} className='mt-10'>
-                    <Loader />
+                    <Loading />
                 </div>
             )}
         </div>

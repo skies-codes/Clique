@@ -13,7 +13,6 @@ import {
 } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
-import Loader from "../../components/shared/Loader";
 import { useToast } from "../../components/ui/use-toast";
 
 import { SigninValidation } from "../../lib/validation/index";
@@ -22,6 +21,7 @@ import { useUserContext } from "../../context";
 import { PiEyeFill, PiEyeSlashFill } from "react-icons/pi";
 import { useState } from "react";
 import { cn } from "../../lib/utils";
+import Loading from "../../components/loaders/Loading";
 
 const SigninForm = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -142,7 +142,7 @@ const SigninForm = () => {
                     >
                         {isPending || isUserLoading ? (
                             <div className='flex-center gap-2'>
-                                <Loader /> Loading...
+                                <Loading text='Loading...' />
                             </div>
                         ) : (
                             "Log in"

@@ -41,7 +41,8 @@
     }
 
     .custom-scrollbar::-webkit-scrollbar-track {
-        background: #09090a;
+        /* background: #09090a; */
+        background: transparent;
     }
 
     .custom-scrollbar::-webkit-scrollbar-thumb {
@@ -67,24 +68,9 @@
     }
 
     /* Explore */
-    .explore-container {
-        @apply flex flex-col flex-1 items-center overflow-scroll py-10 px-5 md:p-14 custom-scrollbar;
-    }
-
-    .explore-inner_container {
-        @apply max-w-5xl flex flex-col items-center w-full gap-6 md:gap-9;
-    }
-
-    .explore-search {
-        @apply h-12 border-none  focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-0 !important;
-    }
-
-    .home-posts {
-        @apply max-w-screen-sm flex flex-col items-center w-full gap-6 md:gap-9;
-    }
 
     .home-creators {
-        @apply hidden xl:flex flex-col w-72 2xl:w-465 px-6 py-10 gap-10  overflow-scroll custom-scrollbar;
+        @apply hidden w-[250px] h-screen xl:flex flex-col items-center py-10 px-6 gap-10 overflow-scroll custom-scrollbar;
     }
 
     /* Post Details */
@@ -137,7 +123,7 @@
     }
 
     .file_uploader-label {
-        @apply text-center text-sm w-full p-4 border-t;
+        @apply text-center text-sm w-full p-4 border-t text-foreground dark:text-dark-foreground;
     }
 
     .file_uploader-box {
@@ -150,7 +136,7 @@
     }
 
     .grid-post_link {
-        @apply flex rounded-[24px] border overflow-hidden cursor-pointer w-full h-full;
+        @apply flex rounded-[24px] border dark:border-none overflow-hidden cursor-pointer w-full h-full;
     }
 
     .grid-post_user {
@@ -168,7 +154,7 @@
 
     /* Post Card */
     .post-card {
-        @apply rounded-3xl border p-5 lg:p-7 w-full max-w-screen-sm;
+        @apply rounded-3xl border p-5 lg:p-7 w-full max-w-screen-xs bg-white dark:bg-dark-3 dark:border-none shadow-sm dark:shadow-none;
     }
 
     .post-card_img {
@@ -177,7 +163,7 @@
 
     /* User card */
     .user-card {
-        @apply flex-center flex-col gap-4 border rounded-[20px] px-5 py-8;
+        @apply flex flex-col border-zinc-800 bg-gray-200/70 rounded-[20px] px-5 py-8 dark:border-none dark:bg-dark-3 gap-3;
     }
 }
 
@@ -193,7 +179,7 @@
     }
 
     .shad-textarea {
-        @apply h-36 rounded-xl border-none focus-visible:ring-1 focus-visible:ring-offset-1 !important;
+        @apply h-36 rounded-xl border-none focus-visible:ring-1 focus-visible:ring-offset-1 bg-gray-200 dark:bg-dark-3 text-foreground dark:text-dark-foreground !important;
     }
 
     /* Button */

@@ -14,7 +14,6 @@ import {
 } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
-import Loader from "../../components/shared/Loader";
 import { cn } from "../../lib/utils";
 import {
     useCreateUserAccount,
@@ -23,6 +22,7 @@ import {
 import { useUserContext } from "../../context";
 import { useState } from "react";
 import { PiEyeFill, PiEyeSlashFill } from "react-icons/pi";
+import Loading from "../../components/loaders/Loading";
 
 const SignupForm = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -210,7 +210,7 @@ const SignupForm = () => {
                     >
                         {isUserLoading ? (
                             <div className='flex-center gap-2'>
-                                <Loader /> Loading...
+                                <Loading text='Loading...' />
                             </div>
                         ) : (
                             "Create My Account"

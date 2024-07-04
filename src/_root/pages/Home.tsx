@@ -1,8 +1,9 @@
 import { Models } from "appwrite";
 
 // import { useToast } from "@/components/ui/use-toast";
-import { Loader, PostCard, UserCard } from "../../components/shared";
+import { PostCard, UserCard } from "../../components/shared";
 import { useGetRecentPosts, useGetUsers } from "../../lib/react-query/queries";
+import Loading from "../../components/loaders/Loading";
 
 const Home = () => {
     // const { toast } = useToast();
@@ -21,30 +22,23 @@ const Home = () => {
 
     if (isErrorPosts || isErrorCreators) {
         return (
-            <div className='flex flex-1'>
-                <div className='home-container'>
-                    <p className='body-medium text-light-1'>
-                        Something bad happened
-                    </p>
-                </div>
-                <div className='home-creators'>
-                    <p className='body-medium text-light-1'>
-                        Something bad happened
-                    </p>
-                </div>
+            <div className='flex flex-1 items-center justify-center'>
+                <p className='body-medium text-light-1'>
+                    Something bad happened
+                </p>
             </div>
         );
     }
 
     return (
-        <section className='flex flex-1'>
-            <div className='flex flex-col flex-1 items-center gap-10 overflow-scroll py-10 px-5 md:px-8 lg:p-14 custom-scrollbar'>
-                <div className='home-posts'>
-                    <h2 className='h3-bold md:h2-bold text-left w-full'>
+        <section className='w-full h-screen flex flex-1 bg-gray-100 dark:bg-dark-background'>
+            <div className='flex flex-col flex-1 items-center lg:gap-10 overflow-scroll custom-scrollbar border-r border-zinc-300 dark:border-zinc-900 mt-12 py-4 lg:mt-0'>
+                <div className='max-w-screen-sm flex flex-col items-center w-full gap-6 md:gap-9 px-5 py-5 md:px-0 lg:py-10'>
+                    <h2 className='text-4xl md:text-xl text-left w-full text-foreground dark:text-dark-foreground'>
                         Home Feed
                     </h2>
                     {isPostLoading && !posts ? (
-                        <Loader />
+                        <Loading />
                     ) : posts?.total !== 0 ? (
                         <ul className='flex flex-col flex-1 gap-9 w-full '>
                             {posts?.documents.map((post: Models.Document) => (
@@ -57,17 +51,21 @@ const Home = () => {
                             ))}
                         </ul>
                     ) : (
-                        <p>There's no post to show. Be the first to post!</p>
+                        <p className='text-foreground dark:text-dark-foreground'>
+                            There's no post to show. Be the first to post!
+                        </p>
                     )}
                 </div>
             </div>
 
-            <div className='home-creators'>
-                <h3 className='h3-bold text-light-1'>Top Creators</h3>
+            <div className='home-creators bg-background dark:bg-dark-2'>
+                <h3 className='text-base md:text-xl text-left w-full text-foreground dark:text-dark-foreground'>
+                    Top Creators
+                </h3>
                 {isUserLoading && !creators ? (
-                    <Loader />
+                    <Loading />
                 ) : (
-                    <ul className='grid 2xl:grid-cols-2 gap-6'>
+                    <ul className='w-full flex flex-col gap-8'>
                         {creators?.documents.map((creator) => (
                             <li key={creator?.$id}>
                                 <UserCard user={creator} />
