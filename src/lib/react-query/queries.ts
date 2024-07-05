@@ -76,6 +76,7 @@ export const useGetPosts = () => {
                 lastPage.documents[lastPage.documents.length - 1].$id;
             return lastId;
         },
+        initialPageParam: undefined,
     });
 };
 
