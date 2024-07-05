@@ -1,30 +1,84 @@
-# React + TypeScript + Vite
+# Remotely
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+Clique is a dynamic social media application designed to foster connections and engagement. This versatile platform allows users to share updates, photos. making it easy to stay connected with friends.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+1. Users can Create a post
+2. Users can Update the post
+3. Users can Delete the post
+4. Users can like and saved the post
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies Used
 
-- Configure the top-level `parserOptions` property like this:
+1.  **Frontend:**
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+-   **React:** A popular JavaScript library for building user interfaces.
+
+-   **Tailwind CSS:** A utility-first CSS framework for styling the frontend.
+
+-   **React-query**: A JavaScript library designed to simplify the complex task of data fetching and caching in React applications.
+
+-   **Zod**: A schema declaration and validation library for typescript.
+
+2.  **Database:**
+
+-   **Appwrite:** An Open-source platform that lets you add Auth, DBs, Functions and Storage to your product and build any application at any scale.
+
+## Setup and Installation
+
+### Prerequisites
+
+-   npm (Node Package Manager) installed.
+
+-   A modern web browser (e.g., Chrome, Firefox).
+
+### Quick Setup
+
+1. Clone the repository:
+
+```bash
+
+git clone https://github.com/skies-codes/Clique.git
+
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Change to the Project Directory
+
+```bash
+
+cd Clique
+
+```
+
+3. Update the .env file from `.env.example` to `.env.local`
+
+```bash
+
+VITE_APPWRITE_URL=
+VITE_APPWRITE_PROJECT_ID=
+VITE_APPWRITE_DATABASE_ID=
+VITE_APPWRITE_STORAGE_ID=
+VITE_APPWRITE_USER_COLLECTION_ID=
+VITE_APPWRITE_POST_COLLECTION_ID=
+VITE_APPWRITE_SAVES_COLLECTION_ID=
+
+```
+
+4. Run
+
+```bash
+npm install
+```
+
+5. To start the local development
+
+```bash
+npm run dev
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
