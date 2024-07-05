@@ -137,20 +137,19 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
                 </ul>
             </div>
             <Button
-                variant='ghost'
-                className='m-4 text-foreground dark:text-dark-foreground hover:bg-destructive flex justify-start items-center gap-2 hover:text-white disabled:opacity-60 disabled:cursor-not-allowed disabled:bg-destructive'
+                type='submit'
+                className={cn(
+                    "text-white bg-red-500 hover:bg-red-400 disabled:cursor-not-allowed disabled:opacity-60 mx-5 my-10"
+                )}
                 disabled={isSignOutUser}
                 onClick={() => handleSignOut()}
             >
                 {isSignOutUser ? (
                     <div className='flex-center gap-2'>
-                        <Loading text='LogingOut...' />
+                        <Loading text='Loading...' />
                     </div>
                 ) : (
-                    <div className='flex gap-2 items-center'>
-                        <BiLogOut size={20} />
-                        <p className='text-base'>Logout</p>
-                    </div>
+                    "Logout"
                 )}
             </Button>
         </nav>
